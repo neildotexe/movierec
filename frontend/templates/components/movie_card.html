@@ -1,0 +1,69 @@
+<div class="col-md-6 col-lg-4 mb-4">
+    <div class="card h-100">
+        <div class="row g-0">
+            <div class="col-md-4">
+               {% load static %}
+        <img src="{% static 'images/' %}{{ movie.Poster_src }}" class="img-fluid rounded-start h-100" alt="{{ movie.Title }}">
+
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ movie.title }} ({{ movie.year }})</h5>
+                    <div class="mb-2">
+                        <span class="badge bg-primary">{{ movie.rating }} <i class="fas fa-star"></i></span>
+                        <span class="badge bg-secondary ms-1">{{ movie.certificate }}</span>
+                        <span class="badge bg-success ms-1">{{ movie.genre }}</span>
+                    </div>
+                    <p class="card-text"><small class="text-muted">Director: {{ movie.director }}</small></p>
+                    <p class="card-text"><small class="text-muted">Cast: {{ movie.cast }}</small></p>
+                    
+                    <div class="d-flex justify-content-between mt-3">
+                        <button class="btn btn-sm btn-outline-primary like-btn" data-movie-id="{{ movie.id }}">
+                            <i class="far fa-thumbs-up"></i> Like
+                        </button>
+                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal{{ movie.id }}">
+                            <i class="far fa-comment"></i> Review
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger">
+                            <i class="far fa-bookmark"></i> Watchlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Review Modal -->
+<div class="modal fade" id="reviewModal{{ movie.id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Review {{ movie.title }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Your Rating</label>
+                        <div class="rating">
+                          {% for i in "54321" %}
+    <input type="radio" id="star{{ i }}-{{ movie.movie_id }}" name="rating" value="{{ i }}">
+    <label for="star{{ i }}-{{ movie.movie_id }}"><i class="fas fa-star"></i></label>
+{% endfor %}
+
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Your Review</label>
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                
+                <hr>
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+/* Rating stars */
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.rating > input {
+    display: none;
+}
+
+.rating > label {
+    position: relative;
+    width: 1em;
+    font-size: 1.5rem;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.rating > label:hover,
+.rating > label:hover ~ label,
+.rating > input:checked ~ label {
+    color: #ffcc00;
+}
+
+/* Movie card hover effect */
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Like button animation */
+.like-btn.active {
+    color: #0d6efd;
+    border-color: #0d6efd;
+}

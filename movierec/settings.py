@@ -14,8 +14,10 @@ from pathlib import Path
 import os
 import environ
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 env = environ.Env(
     # set casting, default values
@@ -81,7 +83,7 @@ ROOT_URLCONF = 'movierec.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'frontend', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -92,6 +94,14 @@ TEMPLATES = [
         },
     },
 ]
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'frontend', 'static'),
+]
+
+
+
+
 
 WSGI_APPLICATION = 'movierec.wsgi.application'
 
@@ -104,7 +114,7 @@ DATABASES = {
         "ENGINE":   "django.db.backends.mysql",
         "NAME":     "movierec_db",        # your database name
         "USER":     "root",      # MySQL username
-        "PASSWORD": "Rudranil@m3",      # MySQL password
+        "PASSWORD": "chinni03",      # MySQL password
         "HOST":     "localhost",         # or your RDS host
         "PORT":     "3306",
     }
